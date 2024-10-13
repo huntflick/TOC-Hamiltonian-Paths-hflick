@@ -1,0 +1,125 @@
+[1, 2, 3, 4, 5] is a Hamiltonian path
+[1, 2, 3, 5, 4] is not a Hamiltonian path
+[1, 2, 4, 3, 5] is not a Hamiltonian path
+[1, 2, 4, 5, 3] is not a Hamiltonian path
+[1, 2, 5, 3, 4] is not a Hamiltonian path
+[1, 2, 5, 4, 3] is a Hamiltonian path
+[1, 3, 2, 4, 5] is not a Hamiltonian path
+[1, 3, 2, 5, 4] is a Hamiltonian path
+[1, 3, 4, 2, 5] is not a Hamiltonian path
+[1, 3, 4, 5, 2] is a Hamiltonian path
+[1, 3, 5, 2, 4] is not a Hamiltonian path
+[1, 3, 5, 4, 2] is not a Hamiltonian path
+[1, 4, 2, 3, 5] is not a Hamiltonian path
+[1, 4, 2, 5, 3] is not a Hamiltonian path
+[1, 4, 3, 2, 5] is a Hamiltonian path
+[1, 4, 3, 5, 2] is not a Hamiltonian path
+[1, 4, 5, 2, 3] is a Hamiltonian path
+[1, 4, 5, 3, 2] is not a Hamiltonian path
+[1, 5, 2, 3, 4] is not a Hamiltonian path
+[1, 5, 2, 4, 3] is not a Hamiltonian path
+[1, 5, 3, 2, 4] is not a Hamiltonian path
+[1, 5, 3, 4, 2] is not a Hamiltonian path
+[1, 5, 4, 2, 3] is not a Hamiltonian path
+[1, 5, 4, 3, 2] is not a Hamiltonian path
+[2, 1, 3, 4, 5] is a Hamiltonian path
+[2, 1, 3, 5, 4] is not a Hamiltonian path
+[2, 1, 4, 3, 5] is not a Hamiltonian path
+[2, 1, 4, 5, 3] is not a Hamiltonian path
+[2, 1, 5, 3, 4] is not a Hamiltonian path
+[2, 1, 5, 4, 3] is not a Hamiltonian path
+[2, 3, 1, 4, 5] is a Hamiltonian path
+[2, 3, 1, 5, 4] is not a Hamiltonian path
+[2, 3, 4, 1, 5] is not a Hamiltonian path
+[2, 3, 4, 5, 1] is not a Hamiltonian path
+[2, 3, 5, 1, 4] is not a Hamiltonian path
+[2, 3, 5, 4, 1] is not a Hamiltonian path
+[2, 4, 1, 3, 5] is not a Hamiltonian path
+[2, 4, 1, 5, 3] is not a Hamiltonian path
+[2, 4, 3, 1, 5] is not a Hamiltonian path
+[2, 4, 3, 5, 1] is not a Hamiltonian path
+[2, 4, 5, 1, 3] is not a Hamiltonian path
+[2, 4, 5, 3, 1] is not a Hamiltonian path
+[2, 5, 1, 3, 4] is not a Hamiltonian path
+[2, 5, 1, 4, 3] is not a Hamiltonian path
+[2, 5, 3, 1, 4] is not a Hamiltonian path
+[2, 5, 3, 4, 1] is not a Hamiltonian path
+[2, 5, 4, 1, 3] is a Hamiltonian path
+[2, 5, 4, 3, 1] is a Hamiltonian path
+[3, 1, 2, 4, 5] is not a Hamiltonian path
+[3, 1, 2, 5, 4] is a Hamiltonian path
+[3, 1, 4, 2, 5] is not a Hamiltonian path
+[3, 1, 4, 5, 2] is a Hamiltonian path
+[3, 1, 5, 2, 4] is not a Hamiltonian path
+[3, 1, 5, 4, 2] is not a Hamiltonian path
+[3, 2, 1, 4, 5] is a Hamiltonian path
+[3, 2, 1, 5, 4] is not a Hamiltonian path
+[3, 2, 4, 1, 5] is not a Hamiltonian path
+[3, 2, 4, 5, 1] is not a Hamiltonian path
+[3, 2, 5, 1, 4] is not a Hamiltonian path
+[3, 2, 5, 4, 1] is a Hamiltonian path
+[3, 4, 1, 2, 5] is a Hamiltonian path
+[3, 4, 1, 5, 2] is not a Hamiltonian path
+[3, 4, 2, 1, 5] is not a Hamiltonian path
+[3, 4, 2, 5, 1] is not a Hamiltonian path
+[3, 4, 5, 1, 2] is not a Hamiltonian path
+[3, 4, 5, 2, 1] is a Hamiltonian path
+[3, 5, 1, 2, 4] is not a Hamiltonian path
+[3, 5, 1, 4, 2] is not a Hamiltonian path
+[3, 5, 2, 1, 4] is not a Hamiltonian path
+[3, 5, 2, 4, 1] is not a Hamiltonian path
+[3, 5, 4, 1, 2] is not a Hamiltonian path
+[3, 5, 4, 2, 1] is not a Hamiltonian path
+[4, 1, 2, 3, 5] is not a Hamiltonian path
+[4, 1, 2, 5, 3] is not a Hamiltonian path
+[4, 1, 3, 2, 5] is a Hamiltonian path
+[4, 1, 3, 5, 2] is not a Hamiltonian path
+[4, 1, 5, 2, 3] is not a Hamiltonian path
+[4, 1, 5, 3, 2] is not a Hamiltonian path
+[4, 2, 1, 3, 5] is not a Hamiltonian path
+[4, 2, 1, 5, 3] is not a Hamiltonian path
+[4, 2, 3, 1, 5] is not a Hamiltonian path
+[4, 2, 3, 5, 1] is not a Hamiltonian path
+[4, 2, 5, 1, 3] is not a Hamiltonian path
+[4, 2, 5, 3, 1] is not a Hamiltonian path
+[4, 3, 1, 2, 5] is a Hamiltonian path
+[4, 3, 1, 5, 2] is not a Hamiltonian path
+[4, 3, 2, 1, 5] is not a Hamiltonian path
+[4, 3, 2, 5, 1] is not a Hamiltonian path
+[4, 3, 5, 1, 2] is not a Hamiltonian path
+[4, 3, 5, 2, 1] is not a Hamiltonian path
+[4, 5, 1, 2, 3] is not a Hamiltonian path
+[4, 5, 1, 3, 2] is not a Hamiltonian path
+[4, 5, 2, 1, 3] is a Hamiltonian path
+[4, 5, 2, 3, 1] is a Hamiltonian path
+[4, 5, 3, 1, 2] is not a Hamiltonian path
+[4, 5, 3, 2, 1] is not a Hamiltonian path
+[5, 1, 2, 3, 4] is not a Hamiltonian path
+[5, 1, 2, 4, 3] is not a Hamiltonian path
+[5, 1, 3, 2, 4] is not a Hamiltonian path
+[5, 1, 3, 4, 2] is not a Hamiltonian path
+[5, 1, 4, 2, 3] is not a Hamiltonian path
+[5, 1, 4, 3, 2] is not a Hamiltonian path
+[5, 2, 1, 3, 4] is a Hamiltonian path
+[5, 2, 1, 4, 3] is a Hamiltonian path
+[5, 2, 3, 1, 4] is a Hamiltonian path
+[5, 2, 3, 4, 1] is a Hamiltonian path
+[5, 2, 4, 1, 3] is not a Hamiltonian path
+[5, 2, 4, 3, 1] is not a Hamiltonian path
+[5, 3, 1, 2, 4] is not a Hamiltonian path
+[5, 3, 1, 4, 2] is not a Hamiltonian path
+[5, 3, 2, 1, 4] is not a Hamiltonian path
+[5, 3, 2, 4, 1] is not a Hamiltonian path
+[5, 3, 4, 1, 2] is not a Hamiltonian path
+[5, 3, 4, 2, 1] is not a Hamiltonian path
+[5, 4, 1, 2, 3] is a Hamiltonian path
+[5, 4, 1, 3, 2] is a Hamiltonian path
+[5, 4, 2, 1, 3] is not a Hamiltonian path
+[5, 4, 2, 3, 1] is not a Hamiltonian path
+[5, 4, 3, 1, 2] is a Hamiltonian path
+[5, 4, 3, 2, 1] is a Hamiltonian path
+There are 28 Hamiltonian paths and 92 invalid or non-Hamiltonian paths.
+Max Hamiltonian time:           9.298324584960938 microseconds
+Max non-Hamiltonian time:       8.344650268554688 microseconds
+Average Hamiltonian time:       3.388949802943638 microseconds
+Average non-Hamiltonian time:   1.5367632326872454 microseconds
