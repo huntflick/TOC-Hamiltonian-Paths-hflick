@@ -1,13 +1,14 @@
 from itertools import permutations
 import csv
 import time
+import sys
+import matplotlib.pyplot as plt
 
 
 def genPaths(nodes):   # generate all permutations of nodes regardless of connectivity 
     allPaths = permutations(nodes)
     paths = []
-    for path in allPaths:
-        paths.append(list(path))
+    for path in allPaths: paths.append(list(path))
     return paths
 
 
@@ -42,56 +43,79 @@ def checkPaths(graph, rem, path):
     
     return checkPaths(graph, rem, nextSteps)    # recursively check path
 
-def main():
+def plotter(data) :
+    for x in data.keys():
+        for tup in data[x]:
+            y = tup[0]
+            if tup[1] == 'h': plt.scatter(x, y, color='green', s=5)
+            else: plt.scatter(x, y, color='red', s=5)
+    plt.savefig("output_plot.png")
+
+
+def main(arguments=sys.argv[1:]):
     graph = {}
+    control = 0
     v = 0
     e = 0
-
+    pathsHolder = {}
     solveTimes = {}
-    file_name = "hamiltonian_path_test_cases2.cnf"
-    with open(file_name, mode ='r')as file:
-        csvFile = csv.reader(file)
-        for lines in csvFile:
-            if lines[0] == 'c':     # reset graph dict on new graph
-                graph = {}
-                control = 0
-            elif lines[0] == 'p':   # get number of vertices and edges
-                v = int(lines[2])
-                e = int(lines[3])
-                if not v in solveTimes:
-                    solveTimes[v] = []
-            elif lines[0] == 'v':   # add verticies to dict
-                for i in range(1, v+1):
-                    graph[int(lines[i])] = []
-                control = 1
-            elif lines[0] == 'e':
-                graph[int(lines[1])].append(int(lines[2]))
-                graph[int(lines[2])].append(int(lines[1]))
-                e -= 1      # keep track of edges remaining
-            if (e == 0) and (control):      # no edges left and all vertices read
-                nodes = list(graph.keys())
-                paths = []
-                SAT = 'u'
-                goodPath = []
-                paths = genPaths(nodes)  # generate all permutations that could be a hamiltonian path
-                
-                start = time.time()
-                for path in paths:  # check paths one at a time
-                    remaining = nodes[:]    # copy list of nodes
-                    result = checkPaths(graph, remaining, path)
-                    if result:
-                        SAT = 'h'
-                        goodPath = path
-                        break
+    try:
+        fileName = arguments[0]
+    except IndexError:
+        fileName = "hamiltonian_path_test_cases2.cnf"
+    try:
+        with open(fileName, mode ='r') as file:
+            csvFile = csv.reader(file)
+            for lines in csvFile:
+                if lines[0] == 'c':     # reset graph dict on new graph
+                    pass
+                elif lines[0] == 'p':   # get number of vertices and edges
+                    v = int(lines[2])
+                    e = int(lines[3])
+                    if not v in solveTimes: solveTimes[v] = []  # initialize for plotting
+                elif lines[0] == 'v':   # add verticies to dict
+                    for i in range(1, v+1): graph[int(lines[i])] = []
+                    control = 1
+                elif lines[0] == 'e':
+                    graph[int(lines[1])].append(int(lines[2]))
+                    graph[int(lines[2])].append(int(lines[1]))
+                    e -= 1      # keep track of edges remaining
+                if (e == 0) and (control):      # no edges left and all vertices read
+                    nodes = list(graph.keys())
+                    SAT = 'u'
+                    goodPath = []
+                    if v not in pathsHolder: pathsHolder[v] = genPaths(nodes)
+                    # generate all permutations that could be a hamiltonian path
+                    #   save for future use to make program efficient especially for larger graphs
+                    
+                    start = time.time()
+                    for path in pathsHolder[v]:  # check paths one at a time
+                        remaining = nodes[:]    # copy list of nodes
+                        result = checkPaths(graph, remaining, path)
+                        if result:
+                            SAT = 'h'
+                            goodPath = path
+                            break
 
-                end = time.time()
-                elapsed = end - start
-                if SAT == 'h':
-                    print(f"Graph {graph} has a Hamiltonian path:\n\t{goodPath}")
-                else:
-                    print(f"Graph {graph} does not have a Hamiltonian path")
-                solveTimes[v].append((elapsed, SAT))    # record time to solve and if hamiltonian
-                print(solveTimes)
+                    end = time.time()
+                    elapsed = end - start
+                    if SAT == 'h':
+                        print(f"Graph {graph} has a Hamiltonian path:\n\t{goodPath}")
+                    else:
+                        print(f"Graph {graph} does not have a Hamiltonian path")
+                    solveTimes[v].append((elapsed, SAT))    # record time to solve and if hamiltonian
+                    graph = {}  # reset graph for next problem
+                    control = 0
+                    
+                    
+                    
+                    
+                    print(solveTimes)   # for testing
+    except FileNotFoundError:
+        print("File not found")
+        return -1
+
+    plotter(solveTimes)
 
 
 if __name__ == '__main__':
