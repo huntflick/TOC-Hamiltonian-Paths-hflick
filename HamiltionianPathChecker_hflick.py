@@ -1,4 +1,5 @@
 from itertools import permutations
+import csv
 import time
 
 
@@ -24,7 +25,7 @@ def checkPaths(graph, rem, path):
             return 0
     
     if len(path) != len(rem):
-        # path and remaininng nodes must be same length
+        # path and remaining nodes must be same length
             # path < rem - won't visit all nodes
             # path > rem - must visit at least one node twice
         return 0
@@ -51,56 +52,65 @@ def checkPaths(graph, rem, path):
     
     return checkPaths(graph, rem, nextSteps)    # recursively check path
 
-
 def main():
-    graph = {1 : [2, 3, 4],
-             2 : [1, 3, 5],
-             3 : [1, 2, 4],
-             4 : [1, 3, 5],
-             5 : [2, 4]
-             }
-    nodes = list(graph.keys())
-    paths = []
-    good = 0
+    graph = {}
+    v = 0
+    e = 0
     goodTime = 0
     maxGoodTime = 0
-    bad = 0
     badTime = 0
     maxBadTime = 0
-    paths = genPaths(nodes)  # generate all permutations that could be a hamiltonian path
-    for path in paths:  # check paths one at a time
-        remaining = nodes[:]    # copy list of nodes
-        start = time.time()
-        result = checkPaths(graph, remaining, path)
-        end = time.time()
-        elapsed = end - start
 
-        if result:
-            good += 1
-            goodTime += elapsed
-            if maxGoodTime < elapsed:
-                maxGoodTime = elapsed
-            print(f"{path} is a Hamiltonian path.")
-        else:
-            bad += 1
-            badTime += elapsed
-            if maxBadTime < elapsed:
-                maxBadTime = elapsed
-            print(f"{path} is not a Hamiltonian path.")
-    if good == 1:
-        if bad == 1:
-            print(f"There is {good} Hamiltonian path and {bad} invalid or non-Hamiltonian path.")
-        else:
-            print(f"There is {good} Hamiltonian path and {bad} invalid or non-Hamiltonian paths.")         
-    else:
-        if bad == 1:
-            print(f"There are {good} Hamiltonian paths and {bad} invalid or non-Hamiltonian path.")
-        else:
-            print(f"There are {good} Hamiltonian paths and {bad} invalid or non-Hamiltonian paths.")
-    print(f"Max Hamiltonian time:           {maxGoodTime * 10**6} microseconds")
-    print(f"Max non-Hamiltonian time:       {maxBadTime * 10**6} microseconds")
-    print(f"Average Hamiltonian time:       {(goodTime/good) * 10**6} microseconds")
-    print(f"Average non-Hamiltonian time:   {(badTime/bad) * 10**6} microseconds")
+    solveTimes = []
+    file_name = "hamiltonian_path_test_cases2.cnf"
+    with open(file_name, mode ='r')as file:
+        csvFile = csv.reader(file)
+        for lines in csvFile:
+            if lines[0] == 'c':     # reset graph dict on new graph
+                graph = {}
+                control = 0
+            elif lines[0] == 'p':   # get number of vertices and edges
+                v = int(lines[2])
+                e = int(lines[3])
+            elif lines[0] == 'v':   # add verticies to dict
+                for i in range(1, v+1):
+                    graph[int(lines[i])] = []
+                control = 1
+            elif lines[0] == 'e':
+                graph[int(lines[1])].append(int(lines[2]))
+                graph[int(lines[2])].append(int(lines[1]))
+                e -= 1      # keep track of edges remaining
+            if (e == 0) and (control):
+                nodes = list(graph.keys())
+                paths = []
+                good = 0
+                bad = 0
+                graphTime = 0
+                # goodTime = 0
+                # maxGoodTime = 0
+                # bad = 0
+                # badTime = 0
+                # maxBadTime = 0
+                paths = genPaths(nodes)  # generate all permutations that could be a hamiltonian path
+                
+                for path in paths:  # check paths one at a time
+                    remaining = nodes[:]    # copy list of nodes
+                    start = time.time()
+                    result = checkPaths(graph, remaining, path)
+                    end = time.time()
+                    elapsed = end - start
+
+                    if result:
+                        good = 1
+                        graphTime += elapsed
+                        if maxGoodTime < elapsed:
+                            maxGoodTime = elapsed
+                        break
+
+                if good == 1:
+                    print(f"Graph {graph} has a Hamiltonian path")
+                else:
+                    print(f"Graph {graph} does not have a Hamiltonian path")
 
 
 
